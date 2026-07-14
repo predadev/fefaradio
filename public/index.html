@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Écoutez notre webradio en direct, en temps réel et sans latence. Audio synchronisé parfaitement entre tous les auditeurs." />
+  <title>RadioLive — Écouter en Direct</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- En-tête -->
+    <header class="site-header">
+      <span class="site-logo" aria-hidden="true">📻</span>
+      <h1 class="site-name">RadioLive</h1>
+      <p class="site-tagline">Votre radio en direct, sans interruption</p>
+    </header>
+
+    <!-- Carte lecteur principal -->
+    <main>
+      <div class="player-card" id="player-card" role="main">
+
+        <!-- Artwork / Visualiseur -->
+        <div class="artwork-container" aria-hidden="true">
+          <div class="artwork-ring" id="artwork-ring"></div>
+          <div class="artwork-circle">
+            <span class="artwork-icon" id="artwork-icon">🎵</span>
+            <div class="equalizer" id="equalizer">
+              <div class="eq-bar"></div>
+              <div class="eq-bar"></div>
+              <div class="eq-bar"></div>
+              <div class="eq-bar"></div>
+              <div class="eq-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badge EN DIRECT -->
+        <div class="live-badge offline" id="live-badge" role="status" aria-live="polite">
+          <span class="live-dot" id="live-dot"></span>
+          <span id="live-label">HORS LIGNE</span>
+        </div>
+
+        <!-- Infos du titre -->
+        <div class="track-info">
+          <div class="track-title" id="track-title">En attente du direct…</div>
+          <div class="track-subtitle" id="track-subtitle">Cliquez sur Écouter pour rejoindre</div>
+        </div>
+
+        <!-- Contrôles -->
+        <div class="player-controls">
+
+          <!-- Bouton Play/Pause -->
+          <button
+            class="btn-play"
+            id="btn-play"
+            aria-label="Écouter le direct"
+            disabled
+          >
+            ▶
+          </button>
+
+          <!-- Volume -->
+          <div class="volume-control" role="group" aria-label="Volume">
+            <span class="volume-icon" id="volume-icon" role="button" tabindex="0" aria-label="Muet/Son" title="Muet">🔊</span>
+            <input
+              type="range"
+              id="volume-slider"
+              min="0"
+              max="100"
+              value="80"
+              step="1"
+              aria-label="Niveau de volume"
+              style="--vol: 80%"
+            />
+            <span class="volume-pct" id="volume-pct" aria-live="polite">80%</span>
+          </div>
+
+          <!-- Message de statut -->
+          <div class="status-msg" id="status-msg" role="status" aria-live="polite">
+            Connexion au serveur…
+          </div>
+
+        </div>
+
+        <!-- Élément audio caché -->
+        <audio id="audio-player" aria-hidden="true"></audio>
+
+      </div>
+    </main>
+
+    <!-- Info rapide -->
+    <aside class="info-card">
+      <p>
+        Ce service utilise <strong>WebRTC</strong> pour une diffusion en temps réel avec une latence minimale.
+        La lecture débute dès que vous appuyez sur <strong>Écouter</strong>.
+      </p>
+    </aside>
+
+    <!-- Lien discret vers la page diffuseur -->
+    <a href="broadcaster.html" class="nav-link" id="broadcaster-link">→ Accès diffuseur</a>
+
+    <footer class="site-footer">
+      <p>RadioLive &copy; <span id="year"></span> — Streaming WebRTC</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- Socket.io (fourni par le serveur Node.js) -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

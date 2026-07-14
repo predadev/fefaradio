@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interface de diffusion pour la webradio RadioLive. Envoyez votre flux audio en direct vers tous les auditeurs." />
+  <title>RadioLive — Console Diffuseur</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- En-tête -->
+    <header class="site-header">
+      <span class="site-logo" aria-hidden="true">🎙️</span>
+      <h1 class="site-name">Console Diffuseur</h1>
+      <p class="site-tagline">Gérez votre diffusion en direct</p>
+    </header>
+
+    <!-- Carte principale diffuseur -->
+    <main>
+      <div class="broadcaster-card" id="broadcaster-card">
+
+        <!-- Titre -->
+        <h2 class="broadcaster-title">Tableau de bord</h2>
+        <p class="broadcaster-subtitle">Diffusez de l'audio en temps réel vers vos auditeurs</p>
+
+        <!-- Statistiques -->
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-value" id="listener-count">0</div>
+            <div class="stat-label">Auditeurs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="broadcast-status-icon">⚪</div>
+            <div class="stat-label">Statut</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="broadcast-time">--:--</div>
+            <div class="stat-label">Durée</div>
+          </div>
+        </div>
+
+        <!-- Badge EN DIRECT -->
+        <div class="live-badge offline" id="bc-live-badge" role="status" aria-live="polite">
+          <span class="live-dot" id="bc-live-dot"></span>
+          <span id="bc-live-label">HORS LIGNE</span>
+        </div>
+
+        <!-- Sélection source audio -->
+        <div class="source-selector">
+          <label for="audio-source">Source audio :</label>
+          <select id="audio-source" aria-label="Choisir la source audio">
+            <option value="mic">🎤 Microphone (voix / entrée live)</option>
+            <option value="file">🎵 Fichier audio (MP3, WAV, OGG…)</option>
+          </select>
+        </div>
+
+        <!-- Zone de fichier (masquée par défaut) -->
+        <div class="file-drop-zone" id="file-drop-zone" style="display:none;">
+          <input type="file" id="audio-file-input" accept="audio/*" aria-label="Choisir un fichier audio" />
+          <span class="file-drop-icon">🎵</span>
+          <p class="file-drop-text">
+            <strong>Glissez un fichier</strong> ou cliquez pour parcourir
+          </p>
+          <p class="file-name" id="file-name"></p>
+        </div>
+
+        <!-- Lecteur audio local (pour fichier) -->
+        <audio id="local-audio" controls style="display:none; width:100%; border-radius:10px;" aria-label="Prévisualisation audio locale"></audio>
+
+        <!-- Niveau audio -->
+        <div style="width:100%;">
+          <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:6px;">Niveau audio entrant :</p>
+          <div class="audio-meter" role="progressbar" aria-label="Niveau audio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="audio-meter-wrapper">
+            <div class="audio-meter-fill" id="audio-meter-fill"></div>
+          </div>
+        </div>
+
+        <!-- Boutons d'action -->
+        <button class="btn-action btn-start" id="btn-start" aria-label="Démarrer la diffusion">
+          🎙️ Démarrer la diffusion
+        </button>
+        <button class="btn-action btn-stop" id="btn-stop" disabled aria-label="Arrêter la diffusion">
+          ⏹ Arrêter la diffusion
+        </button>
+
+        <!-- Message de statut -->
+        <div class="status-msg" id="bc-status-msg" role="status" aria-live="polite">
+          Connexion au serveur…
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Lien retour -->
+    <a href="/" class="nav-link" id="listener-link">← Page auditeur</a>
+
+    <footer class="site-footer">
+      <p>RadioLive &copy; <span id="year"></span> — Interface de diffusion</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="broadcaster.js"></script>
+</body>
+</html>
