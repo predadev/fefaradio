@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interface de diffusion pour la webradio RadioLive. Envoyez votre flux audio en direct vers tous les auditeurs." />
-  <title>RadioLive — Console Diffuseur</title>
+  <meta name="description" content="Fefaradio" />
+  <title>Fefaradio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -13,9 +13,9 @@
 
     <!-- En-tête -->
     <header class="site-header">
-      <span class="site-logo" aria-hidden="true">🎙️</span>
-      <h1 class="site-name">Console Diffuseur</h1>
-      <p class="site-tagline">Gérez votre diffusion en direct</p>
+      <span class="site-logo" aria-hidden="true"></span>
+      <h1 class="site-name">Diffuseur</h1>
+      <p class="site-tagline">Diffusion en direct</p>
     </header>
 
     <!-- Carte principale diffuseur -->
@@ -24,7 +24,7 @@
 
         <!-- Titre -->
         <h2 class="broadcaster-title">Tableau de bord</h2>
-        <p class="broadcaster-subtitle">Diffusez de l'audio en temps réel vers vos auditeurs</p>
+        <p class="broadcaster-subtitle">Diffusez de l'audio</p>
 
         <!-- Statistiques -->
         <div class="stat-row">
@@ -33,7 +33,7 @@
             <div class="stat-label">Auditeurs</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value" id="broadcast-status-icon">⚪</div>
+            <div class="stat-value" id="broadcast-status-icon"></div>
             <div class="stat-label">Statut</div>
           </div>
           <div class="stat-box">
@@ -52,15 +52,15 @@
         <div class="source-selector">
           <label for="audio-source">Source audio :</label>
           <select id="audio-source" aria-label="Choisir la source audio">
-            <option value="mic">🎤 Microphone (voix / entrée live)</option>
-            <option value="file">🎵 Fichier audio (MP3, WAV, OGG…)</option>
+            <option value="mic">Microphone</option>
+            <option value="file">Fichier audio</option>
           </select>
         </div>
 
         <!-- Zone de fichier (masquée par défaut) -->
         <div class="file-drop-zone" id="file-drop-zone" style="display:none;">
           <input type="file" id="audio-file-input" accept="audio/*" aria-label="Choisir un fichier audio" />
-          <span class="file-drop-icon">🎵</span>
+          <span class="file-drop-icon"></span>
           <p class="file-drop-text">
             <strong>Glissez un fichier</strong> ou cliquez pour parcourir
           </p>
@@ -80,7 +80,7 @@
 
         <!-- Boutons d'action -->
         <button class="btn-action btn-start" id="btn-start" aria-label="Démarrer la diffusion">
-          🎙️ Démarrer la diffusion
+          Démarrer la diffusion
         </button>
         <button class="btn-action btn-stop" id="btn-stop" disabled aria-label="Arrêter la diffusion">
           ⏹ Arrêter la diffusion
