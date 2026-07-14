@@ -97,10 +97,10 @@ function setPlaying(playing) {
 
   if (playing) {
     trackTitle.textContent = '🔴 En direct';
-    trackSub.textContent   = 'Diffusion en temps réel';
+    trackSub.textContent   = 'Diffusion';
   } else {
     trackTitle.textContent = 'En attente du direct…';
-    trackSub.textContent   = 'Cliquez sur Écouter pour rejoindre';
+    trackSub.textContent   = 'Cliquez sur Écouter';
   }
 }
 
@@ -157,7 +157,7 @@ function connectSocket() {
     setLive(false);
     setPlaying(false);
     setStatus("Le direct s'est terminé.", '');
-    showToast("📴 La diffusion s'est arrêtée.");
+    showToast("La diffusion s'est arrêtée.");
     cleanupPeer();
   });
 
